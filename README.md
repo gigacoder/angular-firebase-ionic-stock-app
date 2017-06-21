@@ -1,5 +1,5 @@
 # angular-firebase-ionic-stock-app
-# This mobile app is build using Angularjs, Firebase, Ionic Framework and Yahoo finance Rest API
+# This mobile app is build using Angularjs, Firebase, Ionic Framework, Google Authentication and Yahoo finance Rest API
 
 ``` git clone https://github.com/gigacoder/angular-firebase-ionic-stock-app.git ```
 
