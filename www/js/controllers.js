@@ -40,11 +40,7 @@ angular.module('starter.controllers', ['firebase'])
     var url = "http://query.yahooapis.com/v1/public/yql";
     var symbol = $scope.symbol;
     var data = encodeURIComponent("select * from yahoo.finance.quote where symbol in ('" +$scope.symbol+ "')");
-    /*
-    Build the string to use with with $http get to retrieve JSON data from Yahoo Finance API
-    Required format is:
-    http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20('aapl')&format=json&diagnostics=true&env=http://datatables.org/alltables.env
-    */
+
     console.log(data);
     var str1 = url.concat("?q=",data);
     str1=str1.concat("&format=json&diagnostics=true&env=store://datatables.org/alltableswithkeys&callback=");
@@ -86,9 +82,6 @@ angular.module('starter.controllers', ['firebase'])
       companyticker.$add({
         Name: $scope.result.Name,
         Category: $scope.result.Category
-        // Price: $scope.result.LastPrice,      
-        // BuyPrice: $scope.result.BuyPrice,
-        // PercentChange: $scope.result.PercentChange
       });
       console.log(companyticker);
       $location.path('/tab/dash');
@@ -98,7 +91,6 @@ angular.module('starter.controllers', ['firebase'])
 }])
 
 .controller('AddController', ['$scope', '$http', '$firebaseArray', '$location', 'FBURL','FBURLROOT', function($scope, $http, $firebaseArray, $location, FBURL, FBURLROOT){
-  //StockCtrl functions
   $scope.symbol = "";
   $scope.result={};
 
@@ -107,11 +99,7 @@ angular.module('starter.controllers', ['firebase'])
     var url = "http://query.yahooapis.com/v1/public/yql";
     var symbol = $scope.symbol;
     var data = encodeURIComponent("select * from yahoo.finance.quote where symbol in ('" +$scope.symbol+ "')");
-    /*
-    Build the string to use with with $http get to retrieve JSON data from Yahoo Finance API
-    Required format is:
-    http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20('aapl')&format=json&diagnostics=true&env=http://datatables.org/alltables.env
-    */
+ 
     console.log(data);
     var str1 = url.concat("?q=",data);
     str1=str1.concat("&format=json&diagnostics=true&env=store://datatables.org/alltableswithkeys&callback=");
@@ -165,10 +153,6 @@ angular.module('starter.controllers', ['firebase'])
 
   var portfolioRef = new Firebase(FBURLROOT+'/myPortfolio');
   $scope.portfolioCategory = $firebaseArray(portfolioRef);
-  // $scope.messages = $firebaseArray(portfolioRef);
-
-
-
 
 }])
 
@@ -199,8 +183,6 @@ function($scope, $location, $stateParams, $firebaseObject, FBURL){
 
 
 .controller('PopupCtrl', ['$scope', '$http', '$firebaseArray', '$location', 'FBURL','FBURLROOT', '$ionicPopup' , '$timeout', function($scope, $http, $firebaseArray, $location, FBURL, FBURLROOT, $ionicPopup, $timeout){
-
-  // Triggered on a button click, or some other target
   $scope.showPopup = function() {
     $scope.data = {};
     // An elaborate, custom popup
@@ -247,32 +229,6 @@ function LoginCtrl(Auth, $state) {
 LoginCtrl.$inject = ['Auth', '$state'];
 
 function DashCtrl() {}
-
-function ChatsCtrl($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-}
-ChatsCtrl.$inject = ['$scope', 'Chats'];
-
-function ChatDetailCtrl($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-}
-ChatDetailCtrl.$inject = ['$scope', '$stateParams', 'Chats'];
-
-function AccountCtrl($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-}
 AccountCtrl.$inject = ['$scope'];
 
 
-
-
-
-
-
-
-//-----------------------------------
